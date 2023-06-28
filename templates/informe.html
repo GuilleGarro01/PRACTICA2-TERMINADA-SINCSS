@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muestra</title>
+</head>
+<body>
+    <table>
+        <tr> 
+            <td>Nombre de Alumno</td>
+            <td>Clase de aula Presente</td>
+            <td>Clase de aula Ausente Justificado</td>
+            <td>Clase de aula Ausente Injustificadas</td>
+            <td>Clase de Ed. Fisica Presentes</td>
+            <td>Clase de Ed. Fisica Ausente Justificada</td>
+            <td>Clase de Ed. Fisica Ausente Injustificada</td>
+            <td>Total de inasistencias</td>
+        </tr>
+        {%for alumno in alumnos%}
+        {%set variables={
+            "id":alumno.id,
+            "aulap":0,      
+            "aulaj":0,
+            "aulanj":0,
+            "fisicap":0,
+            "fisicaj":0,
+            "fisicanj":0
+            
+        }%}
+        
+        {%for asistencia in asistencias %}
+            {%if asistencia.idestudiante==variables.id %}
+                {%if asistencia.codigoclase==1%}
+                    {%if asistencia.asistio=="s"%}
+                        {%  set _ = variables.update({"aulap": variables.get("aulap", 0) + 1}) %}
+                    {%elif asistencia.asistio=="n" and asistencia.justificacion!=""%}
+                        {%  set _ = variables.update({"aulaj": variables.get("aulaj", 0) + 1}) %}
+                    {%else%}
+                        {%  set _ = variables.update({"aulanj": variables.get("aulanj", 0) + 1}) %}
+                    {%endif%}
+  
+                {%elif asistencia.codigoclase==2%}
+                    {%if asistencia.asistio=="s"%}
+                        {%  set _ = variables.update({"fisicap": variables.get("fisicap", 0) + 1}) %}
+                    {%elif asistencia.asistio=="n" and asistencia.justificacion!=""%}
+                        {%  set _ = variables.update({"fisicaj": variables.get("fisicaj", 0) + 1}) %}
+                    {%else%}
+                        {%  set _ = variables.update({"fisicanj": variables.get("fisicanj", 0) + 1}) %}
+                    {%endif%}
+                {%endif%}
+            {%endif%}
+        {%endfor%}
+        <tr>
+            <td>{{alumno.nombre}}</td>
+            <td>{{variables.aulap}}</td>
+            <td>{{variables.aulaj}}</td>
+            <td>{{variables.aulanj}}</td>
+            <td>{{variables.fisicap}}</td>
+            <td>{{variables.fisicaj}}</td>
+            <td>{{variables.fisicanj}}</td>
+            <td>{{variables.aulaj+variables.aulanj+(variables.fisicaj+variables.fisicanj)/2}}</td>
+        </tr>
+        {%endfor%}
+
+    </table>
+
+
+
+                
+        
+
+
+</body>
+</html>

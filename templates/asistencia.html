@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{ url_for('confirmarAsistencia')}}" method="post">
+        <input type="hidden" name="codigoclase" value="{{tipoclase}}">
+        <input type="hidden" name="idalumno" value="{{idalumno}}">
+        <input type="hidden" name="fecha" value="{{fecha}}">
+        <input type="text" name="asis"  >
+        <input type="text" name="justificacion" >
+        <button type="submit">
+            Aceptar
+        </button>
+    </form>
+</body>
+</html>

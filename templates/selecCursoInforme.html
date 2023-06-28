@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informes</title>
+</head>
+<body>
+    <h2>Seleccione uno de los cursos</h2>
+    <form action="{{ url_for('muestraInforme')}}" method="post">
+        <select name="curso" id="">
+        {%for curso in cursos%}
+            <option value="{{curso.id}}">
+                {{curso.anio}}°
+                {{curso.division}}
+            </option>
+        {%endfor%}
+        </select>
+            <button type="submit">Continuar</button>
+</body>
+</html>

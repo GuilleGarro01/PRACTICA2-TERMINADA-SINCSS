@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bienvenida</title><title<>
+    </head>
+    <body>
+        <h1>Bienvenido al colegio San Miguel</h1>
+    <body>
+        <h2>- Control de Asistencia -</h2>
+        <h3>Por favor ingrese sus datos</h3>
+        <hr><form action="{{url_for('alta') }}"method="post">
+                <label for="email">Email</label><br>
+                <input type="text" name="email" /><br>
+                <label for="clave">Contraseña</label><br>
+                <input type="password"name="clave" /><br>
+                <h4>Estas ingresando como preceptor</h4>
+                <input type="submit" value="Guardar"/>
+            </form>
+    </body>
+</html>

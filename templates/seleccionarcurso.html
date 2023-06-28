@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>seleccionarcurso</title>
+</head>
+<body>
+    <h2>Seleccione uno de los cursos</h2>
+    <form action="{{ url_for('registrarAsistencia')}}" method="post">
+        <select name="curso" id="">
+        {%for curso in cursos%}
+            <option value="{{curso.id}}">
+                {{curso.anio}}°
+                {{curso.division}}
+            </option>
+        {%endfor%}
+        </select>
+            
+            <select name="tipoclase">
+                <option value="1" name="Claseaula">Clase Aula</option>
+                <option value="2" name="Claseedu">Clase educacion Fisica</option>
+            </select>
+        <br><br>
+            <input type="date" id="start" name="fecha"
+            value="2013-06-24"
+            min="2023-01-01" max="2023-12-31">
+
+
+        <br><br>
+        <button type="submit">Confirmar asistencia</button>
+    </form>
+</body>
+</html>

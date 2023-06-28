@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cursoseleccionado</title>
+</head>
+<body>
+    <h2>Listado de alumnos del curso:</h2>
+    <h4>Selecciones un alumno para registrar su asistencia</h4>
+
+    {%for alu in alumnos%}
+        {%print (alu.nombre)%}
+        <a href="{{url_for('marcarAsistencia',fecha=fecha, tipoclase=tipoclase,idalumno=alu.id)}}"> {{alu.nombre}} {{alu.apellido}} {{alu.dni}}</a><br>
+    {%endfor%}
+</body>
+</html>
